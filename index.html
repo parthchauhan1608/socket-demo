@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello world</title>
+   </head>
+   
+   <script src = "/socket.io/socket.io.js"></script>
+   <script>
+      var socket = io("https://stagsvc.celebfie.com");
+      socket.on('connection',(socket)=>{
+         console.log("connected");
+      });
+      function join(){
+         socket.emit('join', "5e9b25320cb7c60c7c4b44da");
+      }
+      function exit(){
+         socket.emit('exit', "5e9b25320cb7c60c7c4b44da")
+      }
+      socket.on('alertNotification',(notification)=>{
+         console.log("notification", notification);
+      });
+   </script>
+   
+   <body>
+      <div id = "error-container"></div>
+      <button type = "button" name = "button" onclick = "join()">Join
+      <button type = "button" name = "button" onclick = "exit()">Exit
+   </body>
+</html>
